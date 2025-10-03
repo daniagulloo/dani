@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Web</title>
+  <meta name="description" content="Página web sencilla y responsive lista para GitHub Pages." />
+  <meta property="og:title" content="Mi Web" />
+  <meta property="og:description" content="Landing minimalista con HTML, CSS y JS puro." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#0b0d12; --panel:#121621; --text:#e7eaf0; --muted:#95a1b2; --brand:#6aa6ff; --brand-2:#8de1ff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.9}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:rgb(11 13 18 / .6);border-bottom:1px solid #1e2433;z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;gap:.6rem;align-items:center;font-weight:700;letter-spacing:.2px}
+    .badge{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#0a0a0a;font-weight:900}
+    .links{display:flex;gap:1rem}
+    .menu-btn{display:none;background:#1a2233;border:1px solid #263149;color:var(--text);padding:.5rem .75rem;border-radius:.6rem}
+    .hero{padding:80px 0 32px}
+    .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+    .title{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 10px}
+    .subtitle{color:var(--muted);margin:0 0 22px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#051018;border:0;padding:.85rem 1rem;font-weight:700;border-radius:.8rem}
+    .btn.ghost{background:#161b28;color:var(--text);border:1px solid #263149}
+    .card{background:var(--panel);border:1px solid #1e2433;border-radius:16px;padding:18px}
+    .preview{aspect-ratio:16/10;background:radial-gradient(60% 80% at 30% 20%,#1a2438,transparent),radial-gradient(60% 80% at 70% 80%,#162035,transparent);border:1px dashed #2a3552;border-radius:14px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    section{padding:42px 0}
+    h2{margin:0 0 18px}
+    .footer{padding:28px 0;color:var(--muted);border-top:1px solid #1e2433}
+    /* Mobile */
+    @media (max-width:900px){
+      .hero .wrap{grid-template-columns:1fr}
+      .links{display:none}
+      .menu-btn{display:inline-flex}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="badge">★</span> Mi Web</div>
+      <nav class="links" id="navLinks">
+        <a href="#caracteristicas">Características</a>
+        <a href="#demo">Demo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn">Menú</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <h1 class="title">Tu landing lista para publicar en <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">GitHub Pages</span></h1>
+          <p class="subtitle">Plantilla minimalista en HTML + CSS + JS. 100% gratis, rápida y fácil de editar.</p>
+          <div class="cta">
+            <a class="btn" href="#demo">Ver demo</a>
+            <a class="btn ghost" href="#caracteristicas">Saber más</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="preview" aria-label="captura previa de la app"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="caracteristicas">
+      <div class="container">
+        <h2>Características</h2>
+        <div class="grid">
+          <div class="card"><strong>Rápida</strong><br><span class="muted">Solo HTML/CSS/JS.</span></div>
+          <div class="card"><strong>Responsive</strong><br><span class="muted">Se adapta a móvil y desktop.</span></div>
+          <div class="card"><strong>Publicable</strong><br><span class="muted">Funciona perfecto en GitHub Pages.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="container">
+        <h2>Demo interactiva</h2>
+        <div class="card">
+          <p id="demoText">Pulsa el botón para cambiar el mensaje.</p>
+          <button class="btn" id="demoBtn">Cambiar mensaje</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <div class="card">
+          <p>Escribe a <a href="mailto:tu-email@ejemplo.com">tu-email@ejemplo.com</a> o crea un issue en tu repositorio.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Mi Web — Hecha con ♥ y GitHub Pages.</div>
+  </footer>
+
+  <script>
+    // Menú móvil
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('navLinks');
+    btn?.addEventListener('click', () => {
+      const visible = getComputedStyle(nav).display !== 'none';
+      nav.style.display = visible ? 'none' : 'flex';
+      if(!visible){ nav.style.flexDirection = 'column'; nav.style.gap = '0.8rem'; }
+    });
+
+    // Demo
+    const demoBtn = document.getElementById('demoBtn');
+    const demoText = document.getElementById('demoText');
+    const mensajes = ['¡Hola mundo! 👋','Esto ya está vivo en Pages 🚀','Edita y haz commit para ver cambios','¡Funciona! ✅'];
+    let i = 0;
+    demoBtn?.addEventListener('click', () => {
+      i = (i + 1) % mensajes.length;
+      demoText.textContent = mensajes[i];
+    });
+
+    // Año actual
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+2222+`p3.dsxaqq
